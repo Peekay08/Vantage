@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/student-dashboard.css">
+    <link rel="icon" href="../assets/small logo with circle.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="menu-bar close">
+        <ul>
+            <li>
+                <a href="#" id="toggle">
+                    <i class='bx bx-menu'></i>
+                    <span>Menu</span>
+
+                </a>
+                <hr>
+            </li>
+            <li>
+                <a href="#" class="active">
+                    <i class='bx bx-grid'></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-message'></i>
+                    <span>Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-envelope'></i>
+                    <span>Mail</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-bell'></i>
+                    <span>Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-calendar'></i>
+                    <span>Calender</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li>
+                <hr>
+                <a href="#">
+                    <i class='bx bx-arrow-from-left'></i>
+                    <span>Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-dashboard">
+        <nav>
+            <img src="../assets/small logo with circle.png" alt="small-logo">
+            <h1>Dashboard</h1>
+            <span class="right">
+                <a href="#" id="user" class="hidden">
+                    <i class="bx bx-user-circle"></i>
+                </a>
+            </span>
+        </nav>
+        <div class="dashboard-grid">
+            <div class="profile display">
+                <img src="../assets/profile.png" alt="profile">
+                <h3>Name</h3>
+                <h4>Status</h4>
+                <hr>
+                <div class="info">
+                    <h5>Information</h5>
+                    <div class="profile-table-container">
+                        <table>
+                            <tr>
+                                <td><i class="fa-solid fa-id-card"></i></td>
+                                <td>
+                                    <span>Student Id:</span>
+                                    <span>242120131</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-building"></i></td>
+                                <td>
+                                    <span>Department:</span>
+                                    <span>Software Engineering</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-cubes"></i></td>
+                                <td>
+                                    <span>Level:</span>
+                                    <span>200 Level</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-user-pen"></i></td>
+                                <td>
+                                    <span>Supervisor:</span>
+                                    <span>#########</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-cake"></i></td>
+                                <td>
+                                    <span>Birthday:</span>
+                                    <span>#########</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-envelope"></i></td>
+                                <td>
+                                    <span>Email:</span>
+                                    <span>#########</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-phone"></i></td>
+                                <td>
+                                    <span>Phone Number:</span>
+                                    <span>#########</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="container-1">
+                <div class="timetable-responsive">
+                    <div class="timetable-scroll">
+                        <table class="personal-timetable">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- BLOCK 1: 9:00 – 11:00 AM -->
+                                <tr>
+                                    <td class="time-slot">9:00 – 11:00</td>
+
+                                    <!-- MONDAY 9-11: COS 202 (section 2) -->
+                                    <td>
+                                        <div class="class-event border-cos">
+                                            <div class="course-code">COS 202</div>
+                                            <div class="course-title">Computer Programming II (section 2)</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 E026</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- TUESDAY 9-11: GST 212 (ONLINE) -->
+                                    <td>
+                                        <div class="class-event border-gst">
+                                            <div class="course-code">GST 212</div>
+                                            <div class="course-title">Philosophy, Logic & Human Existence</div>
+                                            <div class="lecturer">🌐 ONLINE LECTURE</div>
+                                            <div class="venue"> Virtual <span class="online-badge">Online</span></div>
+                                        </div>
+                                    </td>
+
+                                    <!-- WEDNESDAY 9-11: IFT 212 (section 2) -->
+                                    <td>
+                                        <div class="class-event border-ift">
+                                            <div class="course-code">IFT 212</div>
+                                            <div class="course-title">Computer Architecture & Organisation (sec 2)</div>
+                                            <div class="lecturer"> Mr. Solomon</div>
+                                            <div class="venue">📍 E026</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- THURSDAY 9-11: MTH 202 (section 1) Actually from data: MTH 202 11AM-1PM, but 9-11 on thursday -->
+                                    <td class="empty-cell">
+                                        <div
+                                            style="color:#9aaeb9; font-size:0.7rem; text-align:center; padding: 8px 0;">
+                                            — Free —</div>
+                                    </td>
+
+                                    <!-- FRIDAY 9-11: IFT 212 (section 1) -->
+                                    <td>
+                                        <div class="class-event border-ift">
+                                            <div class="course-code">IFT 212</div>
+                                            <div class="course-title">Computer Architecture & Organisation (sec 1)</div>
+                                            <div class="lecturer"> Mr. Solomon</div>
+                                            <div class="venue">📍 D006</div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- BLOCK 2: 11:00 – 13:00 (11AM - 1PM) -->
+                                <tr>
+                                    <td class="time-slot">11:00 – 13:00</td>
+
+                                    <!-- MONDAY 11-1: FREE (no course scheduled, COS 202 sections are 9-12 & 2-5 only -->
+                                    <td>
+                                        <div class="class-event border-cos">
+                                            <div class="course-code">COS 202 (cont.)</div>
+                                            <div class="course-title">Computer Programming II <span
+                                                    style="font-size:0.65rem;">(9am–12pm session)</span></div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 E026 (continued)</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- TUESDAY 11-1: INS 204 (section 1: 11am–2pm) It covers 11-1 and also 1-2pm part -->
+                                    <td>
+                                        <div class="class-event border-ins">
+                                            <div class="course-code">INS 204</div>
+                                            <div class="course-title">Systems Analysis & Design (SECTION 1)</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 D008 (11am–2pm)</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- WEDNESDAY 11-1: ENT 212 (12PM-2PM from original data) Actually ENT212 is 12pm-2pm wednesday -->
+                                    <td>
+                                        <div class="class-event border-ent">
+                                            <div class="course-code">ENT 212</div>
+                                            <div class="course-title">Entrepreneurship & Innovation</div>
+                                            <div class="lecturer">🌐 ONLINE LECTURE</div>
+                                            <div class="venue"> Virtual <span class="online-badge">12pm–2pm</span></div>
+                                        </div>
+                                    </td>
+
+                                    <!-- THURSDAY 11-1: MTH 202 (section 1) -->
+                                    <td>
+                                        <div class="class-event border-mth">
+                                            <div class="course-code">MTH 202</div>
+                                            <div class="course-title">Mathematical Methods II (SECTION 1)</div>
+                                            <div class="lecturer"> Mathematics Dept.</div>
+                                            <div class="venue">📍 E027</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- FRIDAY 11-1: MTH 202 (section 2) -->
+                                    <td>
+                                        <div class="class-event border-mth">
+                                            <div class="course-code">MTH 202</div>
+                                            <div class="course-title">Mathematical Methods II (SECTION 2)</div>
+                                            <div class="lecturer"> Mathematics Dept.</div>
+                                            <div class="venue">📍 E027</div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- BLOCK 3: 13:00 – 15:00 (1PM - 3PM) -->
+                                <tr>
+                                    <td class="time-slot">13:00 – 15:00</td>
+
+                                    <!-- MONDAY 1-3PM: COS 202 section 1 (2pm-5pm) - Original: COS202 (section1) Monday 2PM-5PM, so from 2pm to 3pm part of this block. Display as starting 2pm -->
+                                    <td>
+                                        <div class="class-event border-cos">
+                                            <div class="course-code">COS 202 (sec 1)</div>
+                                            <div class="course-title">Computer Programming II (section 1)</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 E020 · 2pm–5pm</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- TUESDAY 1-3PM: INS 204 continues (section 1: 11am–2pm covers 1-2pm) + section 2 from 2pm-5pm -->
+                                    <td>
+                                        <div class="class-event border-ins">
+                                            <div class="course-code">INS 204</div>
+                                            <div class="course-title">Systems Analysis (Section 1 & 2)</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 D008 (sec1: 11-2pm, sec2: 2-5pm)</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- WEDNESDAY 1-3PM: ENT 212 (12-2pm) ends at 2pm. 1-2pm still class; then 2-3 free -->
+                                    <td>
+                                        <div class="class-event border-ent">
+                                            <div class="course-code">ENT 212</div>
+                                            <div class="course-title">Entrepreneurship & Innovation (ends 2pm)</div>
+                                            <div class="lecturer">🌐 Online session</div>
+                                            <div class="venue"> Virtual · 12pm–2pm</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- THURSDAY 1-3PM: no scheduled course (MTH202 is 11-1pm only). Free -->
+                                    <td class="empty-cell">
+                                        <div style="color:#9aaeb9; font-size:0.7rem; text-align:center;"> Free period
+                                        </div>
+                                    </td>
+
+                                    <!-- FRIDAY 1-3PM: no course (MTH202 11-1pm only). Free -->
+                                    <td class="empty-cell">
+                                        <div style="color:#9aaeb9; font-size:0.7rem; text-align:center;"> - Free -</div>
+                                    </td>
+                                </tr>
+
+                                <!-- BLOCK 4: 15:00 – 17:00 (3PM - 5PM) -->
+                                <tr>
+                                    <td class="time-slot">15:00 – 17:00</td>
+
+                                    <!-- MONDAY 3-5PM: COS 202 section1 continues (2pm-5pm) covers 3-5pm -->
+                                    <td>
+                                        <div class="class-event border-cos">
+                                            <div class="course-code">COS 202 (sec 1)</div>
+                                            <div class="course-title">Computer Programming II (cont.)</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 E020 · until 5pm</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- TUESDAY 3-5PM: INS 204 (SECTION 2) 2pm-5pm, so covers 3-5 -->
+                                    <td>
+                                        <div class="class-event border-ins">
+                                            <div class="course-code">INS 204 (SECTION 2)</div>
+                                            <div class="course-title">Systems Analysis & Design</div>
+                                            <div class="lecturer"> MRS. HAUWA</div>
+                                            <div class="venue">📍 D008 · 2pm–5pm</div>
+                                        </div>
+                                    </td>
+
+                                    <!-- WEDNESDAY 3-5PM: Nothing scheduled (after ENT212 ends at 2pm) Free -->
+                                    <td class="empty-cell">
+                                        <div style="color:#9aaeb9; font-size:0.7rem; text-align:center;"> - Free -</div>
+                                    </td>
+
+                                    <!-- THURSDAY 3-5PM: No courses (free) -->
+                                    <td class="empty-cell">
+                                        <div style="color:#9aaeb9; font-size:0.7rem; text-align:center;"> - Free -</div>
+                                    </td>
+
+                                    <!-- FRIDAY 3-5PM: No courses (free) -->
+                                    <td class="empty-cell">
+                                        <div style="color:#9aaeb9; font-size:0.7rem; text-align:center;"> - Free -</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-2 show">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8543.326090613542!2d7.4024757221349695!3d9.018007022235391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7506cc098c9f%3A0x713db1c45e39ed24!2sNile%20University%20of%20Nigeria!5e0!3m2!1sen!2sng!4v1775732032284!5m2!1sen!2sng"
+                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div id="pop-up" class="hidden">
+                <div class="building-name">
+                    <h2>Building Name</h2>
+                    <i class="bx bx-x" id="close-popup"></i>
+                </div>
+                <div class="class-list">
+                    <ul>
+                        <li>
+                            <span class="class-id">001</span>
+                            <span class="use-status free">free</span>
+                        </li>
+                        <li>
+                            <span class="class-id">002</span>
+                            <span class="use-status in-use">in use</span>
+                        </li>
+                        <li>
+                            <span class="class-id">003</span>
+                            <span class="use-status free">free</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="profilePopup hidden">
+        <i class='bx bx-x'></i>
+        <img src="../assets/images/profile.png" alt="profile">
+        <h3>Name</h3>
+        <hr>
+        <div class="info">
+            <h5>Information</h5>
+            <div class="profile-table-container">
+                <table>
+                    <tr>
+                        <td><i class="fa-solid fa-id-card"></i></td>
+                        <td>
+                            <span>Student Id:</span>
+                            <span>242120131</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-building"></i></td>
+                        <td>
+                            <span>Department:</span>
+                            <span>Software Engineering</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-cubes"></i></td>
+                        <td>
+                            <span>Level:</span>
+                            <span>200 Level</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-user-pen"></i></td>
+                        <td>
+                            <span>Supervisor:</span>
+                            <span>#########</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-cake"></i></td>
+                        <td>
+                            <span>Birthday:</span>
+                            <span>#########</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-envelope"></i></td>
+                        <td>
+                            <span>Email:</span>
+                            <span>#########</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-phone"></i></td>
+                        <td>
+                            <span>Phone Number:</span>
+                            <span>#########</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="hidden"></div>
+
+
+    <script src="https://kit.fontawesome.com/88406e148e.js" crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>
