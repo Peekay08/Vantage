@@ -1,0 +1,130 @@
+:root {
+    --base-clr: #2f4156;
+    --pale-base-clr: hsl(212, 28%, 37%);
+    --dark-base-clr: hsl(212, 30%, 21%);
+    --accent-clr: #668299;
+    --half-accent-clr: #bfcfdb;
+    --pale-accent-clr: hsl(207, 25%, 60%);
+    --dark-accent-clr: hsl(207, 25%, 40%);
+    --text-clr: #ffffff;
+    --bg-clr: #dce8f1;
+    --overlay-clr: rgba(38, 52, 71, 0.75);
+    --pale-overlay-clr: hsla(212, 30%, 50%, 0.25);
+}
+
+* {
+    font-family: "Commissioner", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+body{
+    display: flex;
+    background-color: var(--bg-clr);
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login {
+    background-color: var(--text-clr);
+    border-radius: 10px;
+    padding: min(5%, 3rem) min(5%, 1rem);
+    box-shadow: 0 0 20px var(--pale-accent-clr);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(37.5rem, 90%);
+    height: 45rem;
+
+    img {
+    width: min(250px, 80%);
+    height: auto;
+    }
+    h2 {
+    color: var(--accent-clr);
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin: 7px 0px 2px;
+    }
+    hr {
+        border: solid .65px var(--accent-clr);
+        margin: 2rem 0 .5rem;
+        width: 90%;
+    }
+    a {
+        color: var(--accent-clr);
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+    p {
+    margin: 0;
+    color: var(--accent-clr);
+    font-size: 1.2rem;
+    font-weight: 300;
+    }
+    footer {
+        color: var(--accent-clr);
+        font-size: 10px;
+        text-align: center;
+        margin: .1rem;
+    }
+    form {
+    text-align: center;
+    width: 100%;
+
+    input {
+    width: min(30rem, 90%);
+    height: 4.75rem;
+    padding: 0 7%;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--bg-clr);
+    outline: none;
+    font-size: 1.2rem;
+
+    &:focus {
+    color: var(--base-clr);
+    border: solid .75px var(--accent-clr);
+    }
+    &::placeholder {
+    color: var(--accent-clr);
+    font-weight: 500;
+    }
+    &:focus::placeholder {
+    color: var(--base-clr);
+    }
+    }
+    button {
+        border: none;
+        border-radius: 30px;
+        background-color: var(--base-clr);
+        color: var(--bg-clr);
+        width: min(30rem, 90%);
+        height: 4.75rem;
+        font-size: 1.75rem;
+        font-weight: 600;
+        padding: 0 2rem;
+        line-height: 3rem;
+        margin-bottom: 3rem;
+        
+        &:hover{
+            background-color: var(--dark-accent-clr);
+            color: var(--text-clr);
+        }
+    }
+    }
+    
+}
+#idNumber {
+    margin-top: 4rem;
+}
+#password,
+.login form button {
+    margin-top: 1rem;
+}
