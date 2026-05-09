@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Timetable</title>
+
+    <link rel="stylesheet" href="../css/timetable.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="menu-bar close">
+    <ul>
+        <li>
+            <a id="toggle">
+                <i class='bx bx-menu'></i>
+                <span>Menu</span>
+            </a>
+            <hr>
+        </li>
+
+        <li>
+            <a href="dashboard.html">
+                <i class='bx bx-grid'></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="../campus-map/map.html">
+                <i class='bx bx-map'></i>
+                <span>Map</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="timetable.html" class="active">
+                <i class='bx bx-table'></i>
+                <span>Timetable</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='bx bx-chart'></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+
+        <li>
+            <hr>
+            <a href="#" class="nav-link logout" id="logout-btn">
+                <i class='bx bx-log-out'></i>
+                <span>Log Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- MAIN -->
+<div class="main-dashboard">
+
+<nav>
+    <img src="../assets/small logo with circle.png">
+    <h1>Timetable Control</h1>
+</nav>
+
+<div class="dashboard-grid">
+
+    <!-- HEADER -->
+    <div class="timetable-header">
+        <h2>Manage Schedule</h2>
+        <button id="addClassBtn">+ Add Class</button>
+    </div>
+
+    <!-- GRID -->
+    <div id="timetableGrid" class="timetable-grid"></div>
+
+</div>
+
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div id="classModal" class="modal hidden">
+    <div class="modal-content">
+
+        <h2 id="modalTitle">Add Class</h2>
+
+        <input id="courseCode" placeholder="Course Code (COS 202)">
+        <input id="courseTitle" placeholder="Course Title">
+        <input id="lecturer" placeholder="Lecturer Name">
+
+        <select id="venue"></select>
+
+        <select id="day">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+        </select>
+
+        <select id="time">
+            <option>9-11</option>
+            <option>11-13</option>
+            <option>13-15</option>
+            <option>15-17</option>
+        </select>
+
+        <div class="modal-actions">
+            <button id="saveBtn">Save</button>
+            <button id="deleteBtn" class="danger hidden">Delete</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- LOGOUT CONFIRMATION -->
+<div id="logout-overlay" class="logout-overlay hidden">
+  <div class="logout-modal">
+    
+    <div class="logout-icon">
+      <i class='bx bx-log-out-circle'></i>
+    </div>
+
+    <h2>Log Out?</h2>
+
+    <p>
+      Are you sure you want to leave the dashboard?
+    </p>
+
+    <div class="logout-actions">
+      <button id="cancel-logout" class="cancel-btn">
+        Cancel
+      </button>
+
+      <button id="confirm-logout" class="confirm-btn">
+        Log Out
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="../js/timetable.js"></script>
+
+</body>
+</html>

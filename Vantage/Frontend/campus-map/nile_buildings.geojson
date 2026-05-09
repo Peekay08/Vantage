@@ -14,7 +14,7 @@
         "id": "block_c",
         "building": "yes",
         "building:levels": "3",
-        "name": "Admin Block"
+        "name": "Nile House"
       },
       "geometry": {
         "type": "Polygon",
@@ -70,7 +70,7 @@
         "addr:street": "297W+FFC, Abuja 900108, Federal Capital Territory",
         "building": "yes",
         "id": "block_b",
-        "name": "Medicine Block"
+        "name": "Volta"
       },
       "geometry": {
         "type": "Polygon",
@@ -143,7 +143,7 @@
         "building": "yes",
         "id": "block_a",
         "building:levels": "3",
-        "name": "Literature/Arts Building"
+        "name": "Niger House"
       },
       "geometry": {
         "type": "Polygon",
@@ -197,7 +197,7 @@
         "id": "block_f",
         "building": "yes",
         "building:levels": "3",
-        "name": "Engineering Block"
+        "name": "Ubangi"
       },
       "geometry": {
         "type": "Polygon",
@@ -239,7 +239,7 @@
         "id": "block_e",
         "building": "yes",
         "building:levels": "3",
-        "name": "Computing Building"
+        "name": "Congo House"
       },
       "geometry": {
         "type": "Polygon",
@@ -333,7 +333,7 @@
         "id": "block_d",
         "building": "yes",
         "building:levels": "3",
-        "name": "Law Block"
+        "name": "Limpopo Bay"
       },
       "geometry": {
         "type": "Polygon",

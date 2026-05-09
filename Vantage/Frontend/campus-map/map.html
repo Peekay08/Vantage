@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nile University Digital Twin Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="icon" href="../assets/small logo with circle.png">
+<link rel="stylesheet" href="map.css"/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="menu-bar close">
+    <ul>
+        <li>
+            <a id="toggle">
+                <i class='bx bx-menu'></i>
+                <span>Menu</span>
+            </a>
+            <hr>
+        </li>
+
+        <li>
+            <a href="../pages/dashboard.html">
+                <i class='bx bx-grid'></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="map.html" class="active">
+                <i class='bx bx-map'></i>
+                <span>Map</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="../pages/timetable.html">
+                <i class='bx bx-table'></i>
+                <span>Timetable</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='bx bx-chart'></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+
+        <li>
+            <hr>
+            <a href="#" class="nav-link logout" id="logout-btn">
+                <i class='bx bx-log-out'></i>
+                <span>Log Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- MAIN -->
+<div class="main-dashboard">
+
+    <!-- NAVBAR -->
+    <nav>
+        <img src="../assets/small logo with circle.png">
+        <h1>Campus Map</h1>
+    </nav>
+
+    <!-- MAP -->
+    <div class="map-wrapper">
+        <div id="map"></div>
+    </div>
+
+</div>
+
+<div id="overlay" class="hidden"></div>
+
+<div id="pop-up" class="hidden">
+    <div class="building-name">
+        <h2 id="popup-title">Building Name</h2>
+        <i class="bx bx-x" id="close-popup"></i>
+    </div>
+
+    <div class="building-info">
+
+        <div class="numberof">
+            <div class="people">
+                <span class="title">People in building:</span>
+                <span class="number" id="people-count">0</span>
+            </div>
+            <div class="classes-free">
+                <span class="title">Free classes:</span>
+                <span class="number" id="free-count">0</span>
+            </div>
+            <div class="classes-in-use">
+                <span class="title">Classes being used:</span>
+                <span class="number" id="used-count">0</span>
+            </div>
+        </div>
+
+        <div class="classes">
+            <h3>Classes</h3>
+            <div class="class-list">
+                <ul id="class-list"></ul>
+            </div>
+        </div>
+
+        <div class="entries-and-exits entries-container">
+            <h3>Entries</h3>
+            <div class="entry-and-exit-details">
+                <ul id="entry-list"></ul>
+            </div>
+        </div>
+
+        <div class="entries-and-exits exits-container">
+            <h3>Exits</h3>
+            <div class="entry-and-exit-details">
+                <ul id="exit-list"></ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LOGOUT CONFIRMATION -->
+<div id="logout-overlay" class="logout-overlay hidden">
+  <div class="logout-modal">
+    
+    <div class="logout-icon">
+      <i class='bx bx-log-out-circle'></i>
+    </div>
+
+    <h2>Log Out?</h2>
+
+    <p>
+      Are you sure you want to leave the dashboard?
+    </p>
+
+    <div class="logout-actions">
+      <button id="cancel-logout" class="cancel-btn">
+        Cancel
+      </button>
+
+      <button id="confirm-logout" class="confirm-btn">
+        Log Out
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// SIDEBAR TOGGLE
+const button = document.getElementById('toggle');
+const menubar = document.querySelector('.menu-bar');
+
+button.onclick = () => menubar.classList.toggle('close');
+</script>
+
+<script src="map.js"></script>
+
+</body>
+</html>

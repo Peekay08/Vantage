@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nile University Digital Twin Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="icon" href="../assets/small logo with circle.png">
+<link rel="stylesheet" href="map.css"/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="logo-wrap">
+        <img src="../assets/small logo with circle.png" alt="Vantage Logo" class="logo-img"/>
+        <span class="logo-text">Vantage</span>
+      </div>
+      <button class="collapse-btn" id="collapseBtn" title="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="../pages/student-dashboard.html" class="nav-link" data-label="Dashboard">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="map.html" class="nav-link active" data-label="Campus Map">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/>
+            <line x1="9" y1="3" x2="9" y2="18"/>
+            <line x1="15" y1="6" x2="15" y2="21"/>
+          </svg>
+        </span>
+        <span class="nav-label">Campus Map</span>
+      </a>
+      <a href="../pages/student-timetable.html" class="nav-link" data-label="My Schedule">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="8" y1="14" x2="8" y2="14" stroke-linecap="round" stroke-width="2.5"/>
+            <line x1="12" y1="14" x2="12" y2="14" stroke-linecap="round" stroke-width="2.5"/>
+            <line x1="8" y1="18" x2="8" y2="18" stroke-linecap="round" stroke-width="2.5"/>
+            <line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="2.5"/>
+          </svg>
+        </span>
+        <span class="nav-label">My Schedule</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-mini">
+        <div class="avatar-sm">P</div>
+        <div class="user-mini-info">
+          <span class="user-mini-name">Promise</span>
+          <span class="user-mini-dept">Software Eng.</span>
+        </div>
+      </div>
+      <a href="#" class="nav-link logout" id="logout-btn">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+            <polyline points="16,17 21,12 16,7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </span>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+  </aside>
+
+<!-- MAIN -->
+<div class="main-dashboard">
+
+    <!-- MAP -->
+    <div class="map-wrapper">
+        <div id="map"></div>
+    </div>
+
+</div>
+
+<div id="overlay" class="hidden"></div>
+
+<div id="pop-up" class="hidden">
+    <div class="building-name">
+        <h2 id="popup-title">Building Name</h2>
+        <i class="bx bx-x" id="close-popup"></i>
+    </div>
+
+    <div class="building-info">
+
+        <div class="numberof">
+            <div class="people">
+                <span class="title">Occupancy:</span>
+                <span class="number" id="occupancy-percent">0%</span>
+            </div>
+            <div class="classes-free">
+                <span class="title">Free classes:</span>
+                <span class="number" id="free-count">0</span>
+            </div>
+        </div>
+
+        <div class="classes">
+            <h3>Classes</h3>
+
+            <!-- 🔍 SEARCH -->
+            <input 
+                type="text" 
+                id="class-search" 
+                placeholder="Search class..."
+                class="class-search"
+            >
+
+            <div class="class-list">
+                <ul id="class-list"></ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LOGOUT CONFIRMATION -->
+<div id="logout-overlay" class="logout-overlay hidden">
+  <div class="logout-modal">
+    
+    <div class="logout-icon">
+      <i class='bx bx-log-out-circle'></i>
+    </div>
+
+    <h2>Log Out?</h2>
+
+    <p>
+      Are you sure you want to leave the dashboard?
+    </p>
+
+    <div class="logout-actions">
+      <button id="cancel-logout" class="cancel-btn">
+        Cancel
+      </button>
+
+      <button id="confirm-logout" class="confirm-btn">
+        Log Out
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// SIDEBAR TOGGLE
+const button = document.getElementById('toggle');
+const menubar = document.querySelector('.menu-bar');
+
+button.onclick = () => menubar.classList.toggle('close');
+</script>
+
+<script src="map.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../assets/small logo with circle.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Vantage</title>
+</head>
+<body>
+<div class="menu-bar close">
+    <ul>
+        <li>
+            <a id="toggle">
+                <i class='bx bx-menu'></i>
+                <span>Menu</span>
+            </a>
+            <hr>
+        </li>
+
+        <li>
+            <a href="dashboard.html" class="active">
+                <i class='bx bx-grid'></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="../campus-map/map.html">
+                <i class='bx bx-map'></i>
+                <span>Map</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="timetable.html">
+                <i class='bx bx-table'></i>
+                <span>Timetable</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='bx bx-chart'></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+
+        <li>
+            <hr>
+            <a href="#" class="nav-link logout" id="logout-btn"><i class='bx bx-log-out'></i>
+                <span>Log Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="main-dashboard">
+
+<nav>
+    <img src="../assets/small logo with circle.png">
+    <h1>Dashboard</h1>
+
+    <span class="right">
+        <i class="bx bx-bell"></i>
+        <i class="bx bx-user-circle"></i>
+    </span>
+</nav>
+
+<div class="dashboard-grid">
+
+    <!-- STATS -->
+    <div class="card stats"><h3>Total Buildings</h3><h1 id="totalBuildings">--</h1></div>
+    <div class="card stats"><h3>Total Rooms</h3><h1 id="totalRooms">--</h1></div>
+    <div class="card stats"><h3>Active Classes</h3><h1 id="activeClasses">--</h1></div>
+    <div class="card stats"><h3>Available Rooms</h3><h1 id="availableRooms">--</h1></div>
+
+    <!-- CHART -->
+    <div class="card chart">
+        <h2>Occupancy Trends</h2>
+        <canvas id="occupancyChart"></canvas>
+    </div>
+
+    <!-- MOST OCCUPIED -->
+    <div class="card list">
+        <h2>Most Occupied Buildings</h2>
+        <div id="mostOccupied"></div>
+    </div>
+    </a>
+
+    <!-- LEAST OCCUPIED -->
+        <div class="card list">
+        <h2>Least Occupied Buildings</h2>
+        <div id="leastOccupied"></div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="card activity">
+        <h2>Live Activity</h2>
+        <div id="activityFeed" class="feed"></div>
+    </div>
+
+</div>
+</div>
+
+<!-- LOGOUT CONFIRMATION -->
+<div id="logout-overlay" class="logout-overlay hidden">
+  <div class="logout-modal">
+    
+    <div class="logout-icon">
+      <i class='bx bx-log-out-circle'></i>
+    </div>
+
+    <h2>Log Out?</h2>
+
+    <p>
+      Are you sure you want to leave the dashboard?
+    </p>
+
+    <div class="logout-actions">
+      <button id="cancel-logout" class="cancel-btn">
+        Cancel
+      </button>
+
+      <button id="confirm-logout" class="confirm-btn">
+        Log Out
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+:root {
+    --base-clr: #2f4156;
+    --pale-base-clr: hsl(212, 28%, 37%);
+    --dark-base-clr: hsl(212, 30%, 21%);
+    --accent-clr: #668299;
+    --half-accent-clr: #bfcfdb;
+    --pale-accent-clr: hsl(207, 25%, 60%);
+    --dark-accent-clr: hsl(207, 25%, 40%);
+    --text-clr: #ffffff;
+    --bg-clr: #dce8f1;
+    --overlay-clr: rgba(38, 52, 71, 0.75);
+    --pale-overlay-clr: hsla(212, 30%, 50%, 0.25);
+}
+
+/* ---------------- BASE ---------------- */
+body{
+margin:0;
+font-family:Arial, sans-serif;
+display:grid;
+grid-template-columns:auto 1fr;
+height:100vh;
+}
+
+/* ---------------- SIDEBAR ---------------- */
+.menu-bar{
+background:#2f4156;
+color:white;
+width:250px;
+height:100vh;
+padding:1em 0.5em;
+transition:0.3s ease;
+overflow:hidden;
+}
+
+.menu-bar ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.menu-bar a{
+display:flex;
+align-items:center;
+gap:12px;
+color:white;
+padding:10px;
+margin:8px;
+border-radius:10px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.menu-bar a.active{
+background:#1e2b3a;
+}
+
+/* ICONS */
+.menu-bar i{
+font-size:20px;
+min-width:24px;
+text-align:center;
+}
+
+/* -------- COLLAPSED STATE -------- */
+.menu-bar.close{
+width:75px;
+padding:1em 0.2em;
+}
+
+/* hide text */
+.menu-bar.close span{
+display:none;
+}
+
+/* center icons */
+.menu-bar.close a{
+justify-content:center;
+padding:10px 0;
+}
+
+/* make links smaller and centered */
+.menu-bar.close a i{
+margin:0;
+}
+
+/* remove hr spacing issues */
+.menu-bar.close hr{
+margin:10px 0;
+}
+
+.menu-bar a:hover:not(.active) {
+        background-color: hsla(212, 30%, 50%, 0.25);
+        }
+
+/* ---------------- MAIN ---------------- */
+.main-dashboard{
+display:grid;
+grid-template-rows:60px 1fr;
+height:100vh;
+}
+
+/* ---------------- NAVBAR ---------------- */
+nav{
+background:#668299;
+display:flex;
+align-items:center;
+padding:0 20px;
+color:white;
+}
+
+nav img{
+width:40px;
+border-radius:50%;
+}
+
+nav h1{
+margin-left:15px;
+}
+
+/* ---------------- MAP FIX ---------------- */
+.map-wrapper{
+position:relative;
+height:100%;
+}
+
+#map{
+height:100%;
+width:100%;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+#overlay {
+    background-color: var(--overlay-clr);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    cursor: pointer;
+    overscroll-behavior: contain;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+#pop-up {
+    background-color: var(--text-clr);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+
+    max-height: 92vh;
+    width: min(42.5%, 850px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    border-radius: 0.9rem;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+#pop-up::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.building-name {
+    position: sticky;
+    top: 0;
+    background-color: var(--dark-base-clr);
+    height: 3.6rem;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--text-clr);
+    padding: 0 0.8rem;
+}
+
+#popup-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#close-popup {
+    margin-left: auto;
+    font-size: 1.4rem;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    background-color: var(--pale-overlay-clr);
+}
+
+/* =========================
+   GRID LAYOUT
+========================= */
+
+.building-info {
+    display: grid;
+    grid-template-columns: 1.35fr 1.3fr;
+    grid-auto-rows: auto;
+
+    gap: 0.6rem;
+    padding: 0.7rem;
+}
+
+/* =========================
+   NUMBER PANEL
+========================= */
+
+.numberof {
+    grid-column: 1;
+    grid-row: 1;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem;
+    height: 200px;
+}
+
+/* target each row correctly */
+.numberof .people,
+.numberof .classes-free,
+.numberof .classes-in-use {
+    display: contents;
+}
+
+.numberof .title,
+.numberof .number {
+    color: var(--dark-accent-clr);
+    background-color: var(--bg-clr);
+    border-radius: 0.6rem;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+}
+
+.numberof .title {
+    font-weight: 600;
+}
+
+.numberof .number {
+    min-width: 65px;
+    text-align: center;
+}
+
+/* =========================
+   CLASSES PANEL
+========================= */
+
+.classes {
+    grid-column: 1;
+    grid-row: 2 / 4;
+
+    background-color: var(--bg-clr);
+    border-radius: 0.9rem;
+    padding: 0.7rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.classes h3 {
+    color: var(--dark-accent-clr);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.class-list {
+    color: var(--dark-accent-clr);
+    background-color: var(--half-accent-clr);
+
+    flex: 1;
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#class-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+#class-list li {
+    display: flex;
+    gap: 0.35rem;
+}
+
+#class-list li > * {
+    height: 2.6rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+
+    background-color: var(--bg-clr);
+    font-size: 0.85rem;
+}
+
+.class-id {
+    width: 60%;
+}
+
+.use-status {
+    width: 40%;
+}
+
+/* =========================
+   ENTRIES & EXITS
+========================= */
+
+.entries-container {
+    grid-column: 2;
+    grid-row: 1 / 3;
+
+}
+
+.exits-container {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.entries-container,
+.exits-container {
+    color: var(--bg-clr);
+    background-color: var(--base-clr);
+    border-radius: 0.9rem;
+    padding: 0.7rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.entries-and-exits h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+/* lists */
+
+#entry-list,
+#exit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.entry-and-exit-details {
+    flex: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-color: var(--pale-overlay-clr);
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+}
+
+#entry-list li,
+#exit-list li {
+    display: flex;
+    gap: 0.35rem;
+    width: 100%;
+}
+
+#entry-list li > *,
+#exit-list li > * {
+    height: 2.6rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+
+    background-color: var(--base-clr);
+    font-size: 0.85rem;
+}
+
+/* widths */
+
+.person-id {
+    width: 65%;
+    
+}
+
+.time {
+    width: 35%;
+    justify-content: center;
+}
+
+/* =========================
+   STATUS COLORS
+========================= */
+
+.free { color: hsl(120, 75%, 35%); }
+.in-use { color: hsl(0, 75%, 35%); }
+
+.entry .time { color: #20df20; }
+.exit .time { color: #df2020; }
+
+/* =========================
+   UTILITIES
+========================= */
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.leaflet-interactive {
+    transition: 0.2s ease;
+}
+
+/* =========================
+   LOGOUT MODAL
+========================= */
+
+.logout-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5000;
+    backdrop-filter: blur(4px);
+}
+
+.logout-modal{
+    width: min(90%, 380px);
+
+    background: var(--text-clr);
+    border-radius: 1rem;
+
+    padding: 1.6rem;
+
+    text-align: center;
+
+    animation: popupAnim 0.25s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.logout-icon{
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    background: rgba(255, 107, 107, 0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-icon i{
+    font-size: 2rem;
+    color: #ff6b6b;
+}
+
+.logout-modal h2{
+    color: var(--base-clr);
+    margin-bottom: 0.4rem;
+}
+
+.logout-modal p{
+    color: var(--dark-accent-clr);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.logout-actions{
+    display: flex;
+    gap: 0.8rem;
+
+    margin-top: 1.5rem;
+}
+
+.logout-actions button{
+    flex: 1;
+    border: none;
+
+    padding: 0.9rem;
+    border-radius: 0.8rem;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.cancel-btn{
+    background: var(--bg-clr);
+    color: var(--base-clr);
+}
+
+.cancel-btn:hover{
+    background: var(--half-accent-clr);
+}
+
+.confirm-btn{
+    background: #ff6b6b;
+    color: white;
+}
+
+.confirm-btn:hover{
+    background: #e25555;
+}
+
+.hidden{
+    display: none;
+}
+
+@keyframes popupAnim{
+    from{
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 850px) {
+    .building-info {
+        grid-template-columns: 1fr;
+    }
+
+    .numberof,
+    .classes,
+    .entries-container,
+    .exits-container {
+        grid-column: 1 / -1;
+        grid-row: auto;
+    }
+}

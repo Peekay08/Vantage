@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\server\\routes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\server\\routes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\timetable\\timetable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\timetable\\timetable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\buildings\\buildings.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\buildings\\buildings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\auth\\auth.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\auth\\auth.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\database\\db.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Vantage\\Backend\\database\\db.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "routes.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\server\\routes.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\server\\routes.cpp",
+              "ViewState": "AgIAABkAAAAAAAAAAAAUwC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-07T00:20:12.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "routes.h",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.h",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\server\\routes.h",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\server\\routes.h",
+              "RelativeToolTip": "Vantage\\Backend\\server\\routes.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T00:20:03.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "timetable.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\timetable\\timetable.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\timetable\\timetable.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-07T00:19:48.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "timetable.h",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.h",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\timetable\\timetable.h",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\timetable\\timetable.h",
+              "RelativeToolTip": "Vantage\\Backend\\timetable\\timetable.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T00:19:41.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "buildings.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\buildings\\buildings.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\buildings\\buildings.cpp",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-07T00:19:35.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "buildings.h",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.h",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\buildings\\buildings.h",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\buildings\\buildings.h",
+              "RelativeToolTip": "Vantage\\Backend\\buildings\\buildings.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T00:19:28.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "auth.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\auth\\auth.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\auth\\auth.cpp",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwBwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-07T00:19:19.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "auth.h",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.h",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\auth\\auth.h",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\auth\\auth.h",
+              "RelativeToolTip": "Vantage\\Backend\\auth\\auth.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T00:19:12.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\main.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\main.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\main.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-06T23:51:20.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "db.cpp",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.cpp",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\database\\db.cpp",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.cpp",
+              "RelativeToolTip": "Vantage\\Backend\\database\\db.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-07T00:18:53.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "db.h",
+              "DocumentMoniker": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.h",
+              "RelativeDocumentMoniker": "Vantage\\Backend\\database\\db.h",
+              "ToolTip": "C:\\Users\\Promise Kolade\\OneDrive\\Documenti\\GitHub\\Vantage\\Vantage\\Backend\\database\\db.h",
+              "RelativeToolTip": "Vantage\\Backend\\database\\db.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T00:18:28.895Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

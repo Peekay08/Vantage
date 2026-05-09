@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Card System</title>
+    <title>Vantage</title>
     <link rel="icon" href="../assets/small logo with circle.png">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,15 +19,16 @@
             <img src="../assets/big logo.png" alt="Logo">
             <h2>LOGIN</h2>
             <p>Card Administrator System</p>
-            <form id="loginForm" action="submit">
-                    <input type="text" id="idNumber" name="idNumber" placeholder="Enter your ID."><br>
-                    <input type="password" id="password" name="password" placeholder="Enter your password."> <br>
-                    <button type="submit" form="loginForm" value="submit">Login</button><br>
+            <form id="loginForm" onsubmit="event.preventDefault(); login();">
+                    <input type="email" id="email" placeholder="Enter your email."><br>
+                    <input type="password" id="password" placeholder="Enter your password."> <br>
+                    <button type="submit">Login</button><br>
                     <a href="#">Forgot password?</a>
             </form>
             <hr>
             <footer>Vanguard University © 2026</footer>
         </div> 
 
+        <script src="../js/login.js"></script>
 </body>
 </html>

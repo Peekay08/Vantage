@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Vantage",
+    "\\Vantage\\Backend",
+    "\\Vantage\\Backend\\auth",
+    "\\Vantage\\Backend\\buildings",
+    "\\Vantage\\Backend\\database",
+    "\\Vantage\\Backend\\server",
+    "\\Vantage\\Backend\\timetable"
+  ],
+  "SelectedNode": "\\Vantage\\Backend\\main.cpp",
+  "PreviewInSolutionExplorer": false
+}
