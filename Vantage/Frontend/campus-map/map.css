@@ -397,14 +397,25 @@ width:100%;
 
 /* widths */
 
+.person-name {
+    width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .person-id {
-    width: 65%;
-    
+    width: 35%;
+    justify-content: center;
+    color: var(--half-accent-clr);
+    font-family: monospace;
+    font-size: 0.8rem;
 }
 
 .time {
-    width: 35%;
+    width: 25%;
     justify-content: center;
+    font-weight: 600;
 }
 
 /* =========================

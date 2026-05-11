@@ -7,9 +7,48 @@ button.onclick = () => menubar.classList.toggle('close');
 // 🧠 DATABASE SIMULATION
 // ----------------------
 
-let timetable = [
-    { id:1, day:"Monday", time:"9-11", course:"COS 202", title:"Programming II", lecturer:"Hauwa", venue:"E026", color:"cos" }
-];
+let timetable = [];
+
+async function loadTimetable() {
+    try {
+        const userStr = localStorage.getItem("user");
+        const headers = {};
+        if (userStr) {
+            const userObj = JSON.parse(userStr);
+            headers["Authorization"] = userObj.token || "";
+        }
+        
+        const res = await fetch("http://localhost:8080/api/timetable/admin", { headers });
+        const data = await res.json();
+        
+        timetable = data.map((item, index) => {
+            let t = item.time;
+            if (t.startsWith("09")) t = "9-11";
+            else if (t.startsWith("11")) t = "11-13";
+            else if (t.startsWith("13")) t = "13-15";
+            else if (t.startsWith("15")) t = "15-17";
+
+            // Normalize day capitalization (DB might store "monday" vs "Monday")
+            const rawDay = item.day || "";
+            const normalizedDay = rawDay.charAt(0).toUpperCase() + rawDay.slice(1).toLowerCase();
+
+            return {
+                id: index + 1,
+                day: normalizedDay,
+                time: t,
+                course: item.course,
+                title: "",
+                lecturer: "",
+                venue: item.venue,
+                color: item.course.split(" ")[0].toLowerCase() || "cos"
+            };
+        });
+        
+        renderTimetable();
+    } catch (e) {
+        console.error("Failed to load timetable", e);
+    }
+}
 
 // Buildings → venues
 const buildings = {
@@ -62,21 +101,23 @@ function renderTimetable() {
 
         days.forEach(d => {
 
-            let cls = timetable.find(x => x.day === d && x.time === t);
-
-            if (cls) {
-                grid.innerHTML += `
-                <div class="grid-cell">
+            let classesInSlot = timetable.filter(x => x.day === d && x.time === t);
+            
+            if (classesInSlot.length > 0) {
+                let cellHtml = `<div class="grid-cell">`;
+                classesInSlot.forEach(cls => {
+                    cellHtml += `
                     <div class="class-block ${cls.color}"
                         draggable="true"
                         onclick="openEdit(${cls.id})"
-                        ondragstart="drag(event, ${cls.id})">
-
+                        ondragstart="drag(event, ${cls.id})"
+                        style="margin-bottom: 5px;">
                         <strong>${cls.course}</strong><br>
-                        ${cls.title}<br>
-                        <small>${cls.venue} • ${cls.lecturer}</small>
-                    </div>
-                </div>`;
+                        <small>${cls.venue}</small>
+                    </div>`;
+                });
+                cellHtml += `</div>`;
+                grid.innerHTML += cellHtml;
             } else {
                 grid.innerHTML += `
                 <div class="grid-cell empty"
@@ -221,19 +262,12 @@ document.getElementById("deleteBtn").onclick = () => {
 ========================= */
 
 const logoutBtn = document.getElementById("logout-btn");
-
-const logoutOverlay =
-document.getElementById("logout-overlay");
-
-const cancelLogout =
-document.getElementById("cancel-logout");
-
-const confirmLogout =
-document.getElementById("confirm-logout");
+const logoutOverlay = document.getElementById("logout-overlay");
+const cancelLogout = document.getElementById("cancel-logout");
+const confirmLogout = document.getElementById("confirm-logout");
 
 logoutBtn.addEventListener("click", (e)=>{
     e.preventDefault();
-
     logoutOverlay.classList.remove("hidden");
 });
 
@@ -242,18 +276,17 @@ cancelLogout.addEventListener("click", ()=>{
 });
 
 logoutOverlay.addEventListener("click", (e)=>{
-
     if(e.target === logoutOverlay){
         logoutOverlay.classList.add("hidden");
     }
-
 });
 
-confirmLogout.addEventListener("click", ()=>{
-
-    // redirect to login page
+confirmLogout.addEventListener("click", async ()=>{
+    try {
+        await fetch("http://localhost:8080/api/logout", { method: "POST" });
+    } catch (e) {}
+    localStorage.removeItem("user");
     window.location.href = "../pages/login.html";
-
 });
 
 // ----------------------
@@ -261,4 +294,4 @@ confirmLogout.addEventListener("click", ()=>{
 // ----------------------
 
 loadVenues();
-renderTimetable();
+loadTimetable();

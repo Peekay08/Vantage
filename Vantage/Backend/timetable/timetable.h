@@ -3,6 +3,7 @@
 
 #include <string>
 
-std::string getStudentTimetable(int studentId);
+std::string getStudentTimetable(const std::string& studentId);
+std::string getAdminTimetable();
 
 #endif

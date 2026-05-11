@@ -65,10 +65,10 @@
 
     <div class="sidebar-bottom">
       <div class="user-mini">
-        <div class="avatar-sm">P</div>
+        <div class="avatar-sm">?</div>
         <div class="user-mini-info">
-          <span class="user-mini-name">Promise</span>
-          <span class="user-mini-dept">Software Eng.</span>
+          <span class="user-mini-name">Loading...</span>
+          <span class="user-mini-dept">---</span>
         </div>
       </div>
       <a href="#" class="nav-link logout" id="logout-btn">
@@ -94,7 +94,7 @@
       <section class="personal-header">
         <div class="greeting-block">
           <p class="greeting-sub" id="timeGreeting">Good afternoon</p>
-          <h1 class="greeting-name">Promise <span class="wave">👋</span></h1>
+          <h1 class="greeting-name">User <span class="wave">👋</span></h1>
           <p class="greeting-meta" id="liveTime">—</p>
         </div>
         <div class="next-class-card">
@@ -112,15 +112,15 @@
       <section class="section-block">
         <h2 class="section-title">Quick Actions</h2>
         <div class="quick-actions">
-          <button class="action-card green" onclick="pulse(this)">
+          <button class="action-card green" id="action-free-room" onclick="pulse(this); showFreeRooms()">
             <div class="action-icon">🟢</div>
             <div class="action-label">Find Free Room</div>
           </button>
-          <button class="action-card blue" onclick="pulse(this)">
+          <button class="action-card blue" id="action-navigate" onclick="pulse(this); showNextClassNav()">
             <div class="action-icon">🧭</div>
             <div class="action-label">Navigate to Next Class</div>
           </button>
-          <button class="action-card teal" onclick="pulse(this)">
+          <button class="action-card teal" id="action-crowded" onclick="pulse(this); showLeastCrowded()">
             <div class="action-icon">🪑</div>
             <div class="action-label">Least Crowded Buildings</div>
           </button>
@@ -130,26 +130,26 @@
       <!-- C. LIVE CAMPUS STATUS -->
       <section class="section-block">
         <h2 class="section-title">Campus Status <span class="live-dot"></span><span class="live-text">Live</span></h2>
-        <div class="status-strip">
+        <div class="status-strip" id="campus-status-strip">
           <div class="status-pill">
-            <div class="status-indicator moderate"></div>
+            <div class="status-indicator moderate" id="traffic-indicator"></div>
             <div>
               <div class="status-pill-label">Campus Traffic</div>
-              <div class="status-pill-value">Moderate</div>
+              <div class="status-pill-value" id="campus-traffic">—</div>
             </div>
           </div>
           <div class="status-pill">
             <div class="status-indicator free"></div>
             <div>
               <div class="status-pill-label">Free Buildings</div>
-              <div class="status-pill-value">4</div>
+              <div class="status-pill-value" id="free-buildings">—</div>
             </div>
           </div>
           <div class="status-pill">
             <div class="status-indicator seats"></div>
             <div>
               <div class="status-pill-label">Available Seats</div>
-              <div class="status-pill-value">650+</div>
+              <div class="status-pill-value" id="available-seats">—</div>
             </div>
           </div>
         </div>
@@ -158,50 +158,12 @@
       <!-- D. RECOMMENDED SPACES -->
       <section class="section-block">
         <h2 class="section-title">Best Places Right Now <span class="fire">🔥</span></h2>
-        <div class="spaces-list">
+        <div class="spaces-list" id="best-places-list">
           <div class="space-row">
             <div class="space-name">
-              <span class="space-icon">📚</span>
-              <span>Library</span>
+              <span class="space-icon">⏳</span>
+              <span>Loading...</span>
             </div>
-            <div class="space-bar-wrap">
-              <div class="space-bar" style="--fill: 40%; --color: #22c55e;"></div>
-            </div>
-            <div class="space-pct" style="color:#22c55e">40% full</div>
-            <button class="space-go" onclick="pulse(this)">Go →</button>
-          </div>
-          <div class="space-row">
-            <div class="space-name">
-              <span class="space-icon">🔬</span>
-              <span>Science Hall</span>
-            </div>
-            <div class="space-bar-wrap">
-              <div class="space-bar" style="--fill: 35%; --color: #22c55e;"></div>
-            </div>
-            <div class="space-pct" style="color:#22c55e">35% full</div>
-            <button class="space-go" onclick="pulse(this)">Go →</button>
-          </div>
-          <div class="space-row">
-            <div class="space-name">
-              <span class="space-icon">💼</span>
-              <span>Business Center</span>
-            </div>
-            <div class="space-bar-wrap">
-              <div class="space-bar" style="--fill: 28%; --color: #10b981;"></div>
-            </div>
-            <div class="space-pct" style="color:#10b981">28% full</div>
-            <button class="space-go" onclick="pulse(this)">Go →</button>
-          </div>
-          <div class="space-row">
-            <div class="space-name">
-              <span class="space-icon">💻</span>
-              <span>ICT Lab (Block D)</span>
-            </div>
-            <div class="space-bar-wrap">
-              <div class="space-bar" style="--fill: 62%; --color: #f59e0b;"></div>
-            </div>
-            <div class="space-pct" style="color:#f59e0b">62% full</div>
-            <button class="space-go" onclick="pulse(this)">Go →</button>
           </div>
         </div>
       </section>
@@ -210,47 +172,33 @@
       <section class="section-block">
         <h2 class="section-title">Today's Schedule</h2>
         <div class="schedule-list">
-          <div class="sched-item done">
-            <div class="sched-time">9:00 AM</div>
+          <div class="sched-item">
+            <div class="sched-time">—</div>
             <div class="sched-line"><div class="sched-dot"></div></div>
             <div class="sched-info">
-              <div class="sched-course">COS 202 – Computer Programming II</div>
-              <div class="sched-room">📍 E026 · Mrs. Hauwa</div>
+              <div class="sched-course">Loading schedule...</div>
+              <div class="sched-room"></div>
             </div>
-            <div class="sched-status">Done</div>
-          </div>
-          <div class="sched-item done">
-            <div class="sched-time">11:00 AM</div>
-            <div class="sched-line"><div class="sched-dot"></div></div>
-            <div class="sched-info">
-              <div class="sched-course">GST 212 – Philosophy, Logic & Human Existence</div>
-              <div class="sched-room">🌐 Online · Virtual</div>
-            </div>
-            <div class="sched-status">Done</div>
-          </div>
-          <div class="sched-item now">
-            <div class="sched-time">2:00 PM</div>
-            <div class="sched-line"><div class="sched-dot pulse-dot"></div></div>
-            <div class="sched-info">
-              <div class="sched-course">Data Structures & Algorithms</div>
-              <div class="sched-room">📍 E020 · Engineering Block</div>
-            </div>
-            <div class="sched-status now-tag">Now</div>
-          </div>
-          <div class="sched-item upcoming">
-            <div class="sched-time">4:00 PM</div>
-            <div class="sched-line"><div class="sched-dot"></div></div>
-            <div class="sched-info">
-              <div class="sched-course">MTH 202 – Mathematical Methods II</div>
-              <div class="sched-room">📍 E027 · Mathematics Dept.</div>
-            </div>
-            <div class="sched-status upcoming-tag">Soon</div>
+            <div class="sched-status"></div>
           </div>
         </div>
       </section>
 
     </div><!-- end scroll-wrapper -->
   </main>
+
+  <!-- QUICK ACTION MODAL -->
+  <div id="qa-overlay" class="qa-overlay hidden">
+    <div class="qa-modal" id="qa-modal">
+      <div class="qa-modal-header">
+        <h2 id="qa-modal-title">Quick Action</h2>
+        <button class="qa-close-btn" id="qa-close-btn">&times;</button>
+      </div>
+      <div class="qa-modal-body" id="qa-modal-body">
+        <!-- Dynamic content injected here -->
+      </div>
+    </div>
+  </div>
 
   <!-- LOGOUT CONFIRMATION -->
 <div id="logout-overlay" class="logout-overlay hidden">

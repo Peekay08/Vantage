@@ -16,35 +16,23 @@ button.onclick = () => {
 
 
 // ======================
-// 🔥 SIMULATED DATABASE
+// 🔥 LIVE DATABASE
 // ======================
 let data = {
-    totalBuildings: 7,
-    totalRooms: 1120,
-    activeClasses: 140,
-    availableRooms: 650,
-    buildings: [
-        { name: "Engineering", occupancy: 82 },
-        { name: "Science Hall", occupancy: 78 },
-        { name: "Library", occupancy: 45 },
-        { name: "Business Center", occupancy: 33 },
-        { name: "Gym", occupancy: 12 },
-        { name: "Art Center", occupancy: 18 },
-        { name: "Auditorium", occupancy: 20 }
-    ],
+    totalStudents: 0,
+    activeStudents: 0,
+    buildings: [],
     activity: []
 };
-
 
 // ======================
 // 🎨 COLOR LOGIC
 // ======================
 function getColor(value) {
-    if (value > 70) return "#ff4d4d";
-    if (value > 40) return "#ffaa00";
-    return "#00cc66";
+    if (value >= 70) return "#ff4d4d"; // Red
+    if (value >= 40) return "#ffaa00"; // Orange/Amber
+    return "#00cc66"; // Green
 }
-
 
 // ======================
 // 📊 RENDER STATS
@@ -55,14 +43,11 @@ function renderStats() {
     const el3 = document.getElementById("activeClasses");
     const el4 = document.getElementById("availableRooms");
 
-    if (!el1 || !el2 || !el3 || !el4) return;
-
-    el1.innerText = data.totalBuildings;
-    el2.innerText = data.totalRooms;
-    el3.innerText = data.activeClasses;
-    el4.innerText = data.availableRooms;
+    if (el1) el1.innerText = data.totalBuildings;
+    if (el2) el2.innerText = data.totalRooms;
+    if (el3) el3.innerText = data.activeClasses;
+    if (el4) el4.innerText = data.availableRooms;
 }
-
 
 // ======================
 // 🏢 RENDER BUILDINGS
@@ -101,7 +86,6 @@ function renderBuildings() {
     leastEl.innerHTML = create(least);
 }
 
-
 // ======================
 // 📡 ACTIVITY FEED
 // ======================
@@ -110,9 +94,8 @@ function renderActivity() {
     if (!container) return;
 
     const logs = data.activity.slice(-6).reverse();
-    container.innerHTML = logs.map(a => `<p>${a}</p>`).join("");
+    container.innerHTML = logs.map(a => `<p>${a.type ? a.type.replace('_', ' ') : 'Alert'} in ${a.building}</p>`).join("");
 }
-
 
 // ======================
 // 📈 CHART
@@ -124,7 +107,7 @@ const chart = new Chart(ctx, {
     data: {
         labels: [],
         datasets: [{
-            label: "Occupancy %",
+            label: "Average Occupancy %",
             data: [],
             borderColor: "#668299",
             backgroundColor: "rgba(102,130,153,0.2)",
@@ -143,53 +126,59 @@ const chart = new Chart(ctx, {
     }
 });
 
-
 // ======================
-// ⚡ SIMULATION ENGINE
+// ⚡ FETCH LIVE DATA
 // ======================
-function simulate() {
+async function fetchData() {
+    try {
+        const userStr = localStorage.getItem("user");
+        const headers = {};
+        if (userStr) {
+            const userObj = JSON.parse(userStr);
+            headers["Authorization"] = userObj.token || "";
+        }
 
-    // update buildings randomly
-    data.buildings.forEach(b => {
-        let change = Math.floor(Math.random() * 10 - 5);
-        b.occupancy = Math.max(5, Math.min(100, b.occupancy + change));
-    });
+        const dashboardRes = await fetch("http://localhost:8080/api/dashboard/admin", { headers });
+        const dashboardData = await dashboardRes.json();
+        
+        data.totalBuildings = dashboardData.totalBuildings || 0;
+        data.totalRooms = dashboardData.totalRooms || 0;
+        data.activeClasses = dashboardData.activeClasses || 0;
+        data.availableRooms = dashboardData.availableRooms || 0;
+        data.activity = dashboardData.alerts || [];
 
-    // update stats
-    data.availableRooms = Math.floor(Math.random() * 800);
+        const buildingsRes = await fetch("http://localhost:8080/api/buildings/admin", { headers });
+        const buildingsData = await buildingsRes.json();
+        
+        data.buildings = buildingsData.map(b => ({
+            name: b.name,
+            occupancy: b.capacity > 0 ? Math.floor((b.currentOccupancy / b.capacity) * 100) : 0
+        }));
 
-    // activity log
-    const messages = [
-        "students entered",
-        "students left",
-        "room became available",
-        "lecture started"
-    ];
+        // chart update
+        const time = new Date().toLocaleTimeString();
+        chart.data.labels.push(time);
+        
+        let avgOcc = 0;
+        if (data.buildings.length > 0) {
+            avgOcc = data.buildings.reduce((sum, b) => sum + b.occupancy, 0) / data.buildings.length;
+        }
+        chart.data.datasets[0].data.push(Math.floor(avgOcc));
 
-    const randomBuilding =
-        data.buildings[Math.floor(Math.random() * data.buildings.length)];
+        if (chart.data.labels.length > 10) {
+            chart.data.labels.shift();
+            chart.data.datasets[0].data.shift();
+        }
 
-    data.activity.push(
-        `${Math.floor(Math.random() * 50)} ${messages[Math.floor(Math.random() * messages.length)]} ${randomBuilding.name}`
-    );
+        chart.update();
 
-    // chart update
-    const time = new Date().toLocaleTimeString();
-
-    chart.data.labels.push(time);
-    chart.data.datasets[0].data.push(randomBuilding.occupancy);
-
-    if (chart.data.labels.length > 10) {
-        chart.data.labels.shift();
-        chart.data.datasets[0].data.shift();
+        // re-render UI
+        renderStats();
+        renderBuildings();
+        renderActivity();
+    } catch (err) {
+        console.error("Error fetching live data", err);
     }
-
-    chart.update();
-
-    // re-render UI
-    renderStats();
-    renderBuildings();
-    renderActivity();
 }
 
 /* =========================
@@ -197,19 +186,12 @@ function simulate() {
 ========================= */
 
 const logoutBtn = document.getElementById("logout-btn");
-
-const logoutOverlay =
-document.getElementById("logout-overlay");
-
-const cancelLogout =
-document.getElementById("cancel-logout");
-
-const confirmLogout =
-document.getElementById("confirm-logout");
+const logoutOverlay = document.getElementById("logout-overlay");
+const cancelLogout = document.getElementById("cancel-logout");
+const confirmLogout = document.getElementById("confirm-logout");
 
 logoutBtn.addEventListener("click", (e)=>{
     e.preventDefault();
-
     logoutOverlay.classList.remove("hidden");
 });
 
@@ -218,25 +200,21 @@ cancelLogout.addEventListener("click", ()=>{
 });
 
 logoutOverlay.addEventListener("click", (e)=>{
-
     if(e.target === logoutOverlay){
         logoutOverlay.classList.add("hidden");
     }
-
 });
 
-confirmLogout.addEventListener("click", ()=>{
-
-    // redirect to login page
+confirmLogout.addEventListener("click", async ()=>{
+    try {
+        await fetch("http://localhost:8080/api/logout", { method: "POST" });
+    } catch (e) {}
+    localStorage.removeItem("user");
     window.location.href = "../pages/login.html";
-
 });
 
 // ======================
 // 🚀 INIT
 // ======================
-renderStats();
-renderBuildings();
-renderActivity();
-
-setInterval(simulate, 3000);
+fetchData();
+setInterval(fetchData, 3000);

@@ -1,0 +1,9 @@
+*.exe
+*.o
+.vs/
+.vscode/
+*.backup
+backend.exe
+Vantage/Backend/backend.exe
+Vantage/Backend/backend_backup*.exe
+Vantage/Backend/db.o

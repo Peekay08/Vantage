@@ -38,43 +38,42 @@ closeBtn?.addEventListener('click', hidePopup);
 overlay?.addEventListener('click', hidePopup);
 
 // Initialize the map centered roughly on Nile University
-function generateFakeData(feature){
+// Initialize the map centered roughly on Nile University
 
- const id = feature.properties["@id"];
-
- const totalClasses = Math.floor(Math.random() * 10) + 5;
-
- let classes = [];
- let used = 0;
-
- for(let i = 1; i <= totalClasses; i++){
-  const inUse = Math.random() > 0.5;
-  if(inUse) used++;
-
-  classes.push({
-   id: String(i).padStart(3,"0"),
-   status: inUse ? "in-use" : "free"
-  });
- }
-
- buildingData[id] = {
-  occupancy: Math.floor(Math.random() * 300),
-  totalClasses,
-  usedClasses: used,
-  freeClasses: totalClasses - used,
-  classes,
-
-  entries: Array.from({length:5},()=>({
-   id: String(Math.floor(Math.random()*999999)).padStart(6,"0"),
-   time: `${Math.floor(Math.random()*12)+1}:${Math.floor(Math.random()*60).toString().padStart(2,'0')} pm`
-  })),
-
-  exits: Array.from({length:5},()=>({
-   id: String(Math.floor(Math.random()*999999)).padStart(6,"0"),
-   time: `${Math.floor(Math.random()*12)+1}:${Math.floor(Math.random()*60).toString().padStart(2,'0')} pm`
-  }))
- };
+async function fetchBuildingData() {
+    try {
+        const userStr = localStorage.getItem("user");
+        const headers = {};
+        if (userStr) {
+            const userObj = JSON.parse(userStr);
+            headers["Authorization"] = userObj.token || "";
+        }
+        
+        const res = await fetch("http://localhost:8080/api/buildings/student", { headers });
+        const data = await res.json();
+        
+        data.forEach(b => {
+            buildingData[b.name] = {
+                occupancy: b.currentOccupancy,
+                capacity: b.capacity,
+                status: b.status,
+                usagePercentage: b.usagePercentage,
+                rooms: b.rooms || [],
+                freeClasses: b.freeClasses || 0,
+                activeClasses: b.activeClasses || 0
+            };
+        });
+        
+        if (geojson) {
+            geojson.eachLayer(layer => {
+                layer.setStyle(buildingStyle(layer.feature));
+            });
+        }
+    } catch (err) {
+        console.error("Error fetching building data", err);
+    }
 }
+
 var map = L.map('map').setView([9.0145, 7.3968], 17);
 
 // Add OpenStreetMap tiles
@@ -105,8 +104,8 @@ L.control.layers({
 
 function buildingStyle(feature){
 
- const id = feature.properties["@id"];
- const data = buildingData[id];
+ const name = feature.properties.name;
+ const data = buildingData[name];
 
  // default state
  let borderColor = "#2f4156";
@@ -114,20 +113,20 @@ function buildingStyle(feature){
  let weight = 1.5;
 
  if(data){
-  const occ = data.occupancy;
+  const pct = data.usagePercentage || 0;
 
-  if(occ > 200){
-   borderColor = "#bf4059"; // 🔴 high #e74c3c
+  if(pct >= 70){
+   borderColor = "#bf4059"; // 🔴 high
    glow = "rgba(231, 76, 60, 0.35)";
    weight = 2.5;
   }
-  else if(occ > 100){
-   borderColor = "#bf8040"; // 🟠 medium #f39c12
+  else if(pct >= 40){
+   borderColor = "#bf8040"; // 🟠 medium
    glow = "rgba(243, 156, 18, 0.35)";
    weight = 2;
   }
   else{
-   borderColor = "#206052"; // 🟢 low #2ecc71
+   borderColor = "#206052"; // 🟢 low
    glow = "rgba(46, 204, 113, 0.3)";
    weight = 2;
   }
@@ -140,7 +139,7 @@ function buildingStyle(feature){
   fillOpacity: 0.55,
 
   // custom property we’ll use later
-  className: `building-${id}`
+  className: `building-${feature.properties["@id"]}`
  };
 }
 
@@ -175,81 +174,61 @@ function resetHighlight(e){
 function buildingClick(e){
 
  const props = e.target.feature.properties;
- const id = props["@id"];
- const data = buildingData[id];
+ const name = props.name;
+ const data = buildingData[name];
+
+ if(!data) return;
 
  // TITLE
- document.getElementById("popup-title").innerText =
-  props.name || "Unknown Building";
+ document.getElementById("popup-title").innerText = name || "Unknown Building";
 
- // ✅ OCCUPANCY → %
- const percent = Math.round((data.occupancy / 300) * 100);
+  // NUMBERS
+  const percent = data.usagePercentage || 0;
 
- document.getElementById("occupancy-percent").innerText =
-  percent + "%";
+  document.getElementById("occupancy-percent").innerText = percent + "%";
+  document.getElementById("free-count").innerText = data.freeClasses;
 
- document.getElementById("free-count").innerText =
-  data.freeClasses;
-
- // CLASSES
- const classList = document.getElementById("class-list");
- classList.innerHTML = "";
-
- data.classes.forEach(cls=>{
-  classList.innerHTML += `
-   <li>
-    <span class="class-id">${cls.id}</span>
-    <span class="use-status ${cls.status}">
-     ${cls.status === "free" ? "free" : "in use"}
-    </span>
-   </li>
-  `;
- });
+  // ROOMS / CLASSES
+  const classList = document.getElementById("class-list");
+  if (classList) {
+     classList.innerHTML = "";
+     if (data.rooms && data.rooms.length > 0) {
+         data.rooms.forEach(room => {
+             const statusClass = room.status === "FREE" ? "free" : "in-use";
+             classList.innerHTML += `
+             <li class="class-item">
+                 <span class="class-room">Room ${room.id}</span>
+                 <span class="class-code ${statusClass}">${room.status}</span>
+                 <span class="class-time">${room.course || "No Class"}</span>
+             </li>
+             `;
+         });
+     } else {
+         classList.innerHTML = "<li class='class-item'>No rooms registered</li>";
+     }
+  }
 
  // 🔍 SEARCH FUNCTIONALITY
  const searchInput = document.getElementById("class-search");
-
- searchInput.value = "";
-
- searchInput.oninput = function(){
-  const query = this.value.toLowerCase();
-
-  const items = classList.querySelectorAll("li");
-
-  items.forEach(item=>{
-   const text = item.innerText.toLowerCase();
-   item.style.display = text.includes(query) ? "flex" : "none";
-  });
- };
-
- showPopup();
-
+ if (searchInput) {
+    searchInput.value = "";
+    searchInput.oninput = function(){
+    const query = this.value.toLowerCase();
+    const items = classList.querySelectorAll("li");
+    items.forEach(item=>{
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(query) ? "flex" : "none";
+    });
+    };
+ }
 
  // ENTRIES
  const entryList = document.getElementById("entry-list");
- entryList.innerHTML = "";
-
- data.entries.forEach(entry=>{
-  entryList.innerHTML += `
-   <li class="entry">
-    <span class="person-id">${entry.id}</span>
-    <span class="time">${entry.time}</span>
-   </li>
-  `;
- });
+ if(entryList) entryList.innerHTML = "";
 
  // EXITS
  const exitList = document.getElementById("exit-list");
- exitList.innerHTML = "";
-
- data.exits.forEach(exit=>{
-  exitList.innerHTML += `
-   <li class="exit">
-    <span class="person-id">${exit.id}</span>
-    <span class="time">${exit.time}</span>
-   </li>
-  `;
- });
+ if(exitList) exitList.innerHTML = "";
 
  // SHOW POPUP
  showPopup();
@@ -261,11 +240,11 @@ function buildingClick(e){
 function onEachBuilding(feature, layer){
 
  const props = feature.properties;
- const id = props["@id"];
- const data = buildingData[id] || { occupancy: 0 };
+ const name = props.name;
+ const data = buildingData[name] || { occupancy: 0, capacity: 100 };
 
- const shortName = props.name
-   ? props.name.split(",")[0]
+ const shortName = name
+   ? name.split(",")[0]
    : "Unknown Building";
 
  function getCompactLabel(){
@@ -277,12 +256,14 @@ function onEachBuilding(feature, layer){
  }
 
  function getExpandedLabel(){
+   const latestData = buildingData[name] || data;
+   const pct = latestData.usagePercentage || 0;
    return `
      <div class="building-label expanded">
        <strong>${shortName}</strong>
        <div class="stats">
-         <p>👥 ${data.occupancy} students</p>
-         <p>⚡ ${data.occupancy > 200 ? "High Activity" : "Normal Activity"}</p>
+         <p>👥 ${latestData.occupancy} students</p>
+         <p>⚡ ${pct > 70 ? "High Activity" : "Normal Activity"}</p>
        </div>
      </div>
    `;
@@ -327,45 +308,65 @@ var geojson;
 
 
 // Load GeoJSON building data
+fetchBuildingData().then(() => {
+    fetch("nile_buildings.geojson")
+    .then(res => res.json())
+    .then(data => {
 
-fetch("nile_buildings.geojson")
-.then(res => res.json())
-.then(data => {
+     geojson = L.geoJSON(data,{
+      style: buildingStyle,
+      onEachFeature: onEachBuilding
+     }).addTo(map);
 
- data.features.forEach(feature => {
-  generateFakeData(feature);
- });
+     map.fitBounds(geojson.getBounds());
+     
+     setInterval(fetchBuildingData, 5000);
 
- geojson = L.geoJSON(data,{
-  style: buildingStyle,
-  onEachFeature: onEachBuilding
- }).addTo(map);
-
- map.fitBounds(geojson.getBounds());
-
-})
-.catch(err => {
- console.error("Error loading GeoJSON:", err);
+    })
+    .catch(err => {
+     console.error("Error loading GeoJSON:", err);
+    });
 });
+
+/* =========================
+   POPULATE USER INFO
+ ========================= */
+
+function populateUserInfo() {
+    const userStr = localStorage.getItem("user");
+    if (!userStr) return;
+
+    try {
+        const userObj = JSON.parse(userStr);
+        if (userObj.user) {
+            const u = userObj.user;
+            
+            // Sidebar
+            const nameEl = document.querySelector(".user-mini-name");
+            const deptEl = document.querySelector(".user-mini-dept");
+            const avatarEl = document.querySelector(".avatar-sm");
+            if (nameEl) nameEl.textContent = u.name;
+            if (deptEl) deptEl.textContent = u.department || "Student";
+            if (avatarEl) avatarEl.textContent = u.name.charAt(0).toUpperCase();
+        }
+    } catch (e) {
+        console.error("Error parsing user data", e);
+    }
+}
+
+populateUserInfo();
 
 /* =========================
    LOGOUT MODAL
 ========================= */
 
 const logoutBtn = document.getElementById("logout-btn");
-
-const logoutOverlay =
-document.getElementById("logout-overlay");
-
-const cancelLogout =
-document.getElementById("cancel-logout");
-
-const confirmLogout =
-document.getElementById("confirm-logout");
+const logoutOverlay = document.getElementById("logout-overlay");
+const cancelLogout = document.getElementById("cancel-logout");
+const confirmLogout = document.getElementById("confirm-logout");
 
 logoutBtn.addEventListener("click", (e)=>{
     e.preventDefault();
-
     logoutOverlay.classList.remove("hidden");
 });
 
@@ -374,16 +375,15 @@ cancelLogout.addEventListener("click", ()=>{
 });
 
 logoutOverlay.addEventListener("click", (e)=>{
-
     if(e.target === logoutOverlay){
         logoutOverlay.classList.add("hidden");
     }
-
 });
 
-confirmLogout.addEventListener("click", ()=>{
-
-    // redirect to login page
+confirmLogout.addEventListener("click", async ()=>{
+    try {
+        await fetch("http://localhost:8080/api/logout", { method: "POST" });
+    } catch (e) {}
+    localStorage.removeItem("user");
     window.location.href = "../pages/login.html";
-
 });
