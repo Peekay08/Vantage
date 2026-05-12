@@ -296,11 +296,14 @@ width:100%;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
+    padding: 0;
+    margin: 0;
 }
 
 #class-list li {
     display: flex;
     gap: 0.35rem;
+    width: 100%;
 }
 
 #class-list li > * {
@@ -310,17 +313,25 @@ width:100%;
 
     display: flex;
     align-items: center;
+    justify-content: center; /* CENTER CONTENT */
+    text-align: center;      /* CENTER TEXT */
 
     background-color: var(--bg-clr);
     font-size: 0.85rem;
 }
 
-.class-id {
-    width: 60%;
+.class-info {
+    flex: 1;
+    font-weight: 600;
+    justify-content: center;
 }
 
-.use-status {
-    width: 40%;
+.class-status {
+    width: 80px;
+    justify-content: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
 }
 
 /* =========================
@@ -362,6 +373,8 @@ width:100%;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
+    padding: 0;
+    margin: 0;
 }
 
 .entry-and-exit-details {
@@ -390,6 +403,8 @@ width:100%;
 
     display: flex;
     align-items: center;
+    justify-content: center; /* CENTER CONTENT */
+    text-align: center;      /* CENTER TEXT */
 
     background-color: var(--base-clr);
     font-size: 0.85rem;
@@ -397,19 +412,29 @@ width:100%;
 
 /* widths */
 
+.person-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* CENTER HORIZONTALLY */
+    gap: 2px;
+}
+
 .person-name {
-    width: 40%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 .person-id {
-    width: 35%;
-    justify-content: center;
+    width: 100%;
     color: var(--half-accent-clr);
     font-family: monospace;
-    font-size: 0.8rem;
+    font-size: 0.75rem !important;
+    opacity: 0.8;
 }
 
 .time {
@@ -562,6 +587,42 @@ width:100%;
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+}
+
+.class-search {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.7rem;
+
+    border: 1px solid var(--half-accent-clr);
+    border-radius: 0.7rem;
+
+    background-color: var(--bg-clr);
+    color: var(--dark-base-clr);
+
+    font-size: 0.9rem;
+
+    outline: none;
+    transition: 0.2s ease;
+
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+
+    backdrop-filter: blur(6px);
+
+}
+
+.class-search:focus {
+    border-color: var(--accent-clr);
+    box-shadow: 0 0 0 3px rgba(102, 130, 153, 0.25);
+    background-color: white;
+}
+
+.class-search::placeholder {
+    color: var(--dark-accent-clr);
+    opacity: 0.7;
+    font-size: 0.85rem;
 }
 
 @media (max-width: 850px) {

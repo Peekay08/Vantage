@@ -1,4 +1,5 @@
 #include "simulator.h"
+#include "analytics/analytics.h"
 #include "../database/db.h"
 #include <pqxx/pqxx>
 #include <thread>
@@ -148,6 +149,11 @@ void runSimulationTick() {
                     "INSERT INTO movement_logs (building_id, user_id, type) VALUES (" +
                     txn.quote(buildingId) + ", " + (userId.empty() ? "NULL" : txn.quote(userId)) + ", " + txn.quote(action) + ")"
                 );
+
+                // LOG SPIKES
+                if (action == "entry" && currentOccupancy >= (int)(capacity * 0.9)) {
+                    logSystemEvent("occupancy_spike", "High capacity reached in " + buildingId);
+                }
             }
         }
 
@@ -157,14 +163,22 @@ void runSimulationTick() {
     }
 }
 
+static int tickCounter = 0;
 void startSimulationThread() {
     initializeOccupancy();
+    logSystemEvent("simulation_start", "Campus simulation engine initialized");
 
     std::thread([]() {
         std::cout << "[SIMULATOR] Simulation thread started.\n";
         while (true) {
             std::this_thread::sleep_for(std::chrono::seconds(10));
             runSimulationTick();
+
+            tickCounter++;
+            if (tickCounter >= 6) { // Every 1 minute (6 * 10s)
+                captureOccupancySnapshots();
+                tickCounter = 0;
+            }
         }
     }).detach();
 }

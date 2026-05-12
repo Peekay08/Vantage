@@ -422,17 +422,25 @@ width:100%;
 
     display: flex;
     align-items: center;
+    justify-content: center; /* CENTER CONTENT */
+    text-align: center;      /* CENTER TEXT */
 
     background-color: var(--bg-clr);
     font-size: 0.85rem;
 }
 
-.class-id {
-    width: 60%;
+.class-info {
+    flex: 1;
+    font-weight: 600;
+    justify-content: center;
 }
 
-.use-status {
-    width: 40%;
+.class-status {
+    width: 80px;
+    justify-content: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
 }
 
 /* widths */

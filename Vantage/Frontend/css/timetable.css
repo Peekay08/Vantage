@@ -185,23 +185,33 @@ nav {
 
 /* CLASS */
 .class-block {
-    padding: 6px;
-    border-radius: 8px;
-    border-left: 5px solid;
+    padding: 8px;
+    border-radius: 10px;
+    border-left: 6px solid #f0f0f0; /* Default faded gray */
     background: #fff;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .class-block:hover {
-    background: #f5f5f5;
+    background: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-/* COLORS */
-.cos { border-color: #2c7da0; }
-.gst { border-color: #5e8b7e; }
-.ins { border-color: #b5838d; }
-.ift { border-color: #6d597a; }
-.mth { border-color: #ffb4a2; }
+/* COLORS MATCHING IMAGE (FADED) */
+.cos { border-color: #A9C9D9; } /* Faded Blue */
+.gst { border-color: #B7E4C7; } /* Faded Green */
+.ins { border-color: #FBC4AB; } /* Faded Maroon */
+.ift { border-color: #DEC9E9; } /* Faded Purple */
+.mth { border-color: #FFD8BE; } /* Faded Orange */
+.ent { border-color: #FFADAD; } /* Faded Red */
+.csc { border-color: #A9D9D9; } /* Faded Teal */
+.eng { border-color: #D9D9A9; } /* Faded Yellow/Gold */
+.phy { border-color: #A9A9D9; } /* Faded Indigo */
+.chm { border-color: #D9A9D9; } /* Faded Magenta */
+.bio { border-color: #A9D9A9; } /* Faded Green */
+.gen { border-color: #D9C9A9; } /* Faded Tan */
 
 /* EMPTY */
 .empty {

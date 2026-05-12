@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/analytics.css">
+    <link rel="icon" href="../assets/small logo with circle.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Vantage | Analytics Center</title>
+</head>
+<body>
+<div class="menu-bar close">
+    <ul>
+        <li>
+            <a id="toggle">
+                <i class='bx bx-menu'></i>
+                <span>Menu</span>
+            </a>
+            <hr>
+        </li>
+        <li>
+            <a href="dashboard.html">
+                <i class='bx bx-grid'></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="../campus-map/map.html">
+                <i class='bx bx-map'></i>
+                <span>Map</span>
+            </a>
+        </li>
+        <li>
+            <a href="timetable.html">
+                <i class='bx bx-table'></i>
+                <span>Timetable</span>
+            </a>
+        </li>
+        <li>
+            <a href="analytics.html" class="active">
+                <i class='bx bx-chart'></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+        <li>
+            <hr>
+            <a href="#" class="nav-link logout" id="logout-btn">
+                <i class='bx bx-log-out'></i>
+                <span>Log Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="main-dashboard">
+    <nav>
+        <img src="../assets/small logo with circle.png">
+        <h1>Analytics Center</h1>
+    </nav>
+
+    <div class="analytics-container">
+        <!-- TOP CONTROL BAR -->
+        <header class="control-bar">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="dateRange">Date Range</label>
+                    <select id="dateRange">
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="quarter">This Quarter</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="buildingFilter">Building</label>
+                    <select id="buildingFilter">
+                        <option value="all">All Buildings</option>
+                        <option value="volta">Volta</option>
+                        <option value="nile">Nile</option>
+                        <option value="benue">Benue</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="deptFilter">Department</label>
+                    <select id="deptFilter">
+                        <option value="all">All Departments</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="law">Law</option>
+                        <option value="medicine">Medicine</option>
+                    </select>
+                </div>
+            </div>
+            <div class="export-actions">
+                <button class="btn-report-center" onclick="toggleReportModal()"><i class='bx bxs-file-export'></i> Report Center</button>
+            </div>
+        </header>
+
+        <!-- REPORT CENTER MODAL -->
+        <div id="reportModal" class="report-modal-overlay hidden">
+            <div class="report-modal">
+                <div class="modal-header">
+                    <h2><i class='bx bxs-report'></i> Administrative Report Center</h2>
+                    <button class="close-modal" onclick="toggleReportModal()">&times;</button>
+                </div>
+                <div class="report-grid">
+                    <div class="report-card" onclick="downloadReport('occupancy', 'csv')">
+                        <i class='bx bxs-buildings'></i>
+                        <h3>Occupancy Report</h3>
+                        <p>Current, Average, and Peak building data.</p>
+                        <span class="format">CSV / PDF</span>
+                    </div>
+                    <div class="report-card" onclick="downloadReport('usage', 'csv')">
+                        <i class='bx bxs-bar-chart-alt-2'></i>
+                        <h3>Building Usage</h3>
+                        <p>Traffic patterns and room count audit.</p>
+                        <span class="format">CSV</span>
+                    </div>
+                    <div class="report-card" onclick="downloadReport('utilization', 'csv')">
+                        <i class='bx bxs-pie-chart-alt-2'></i>
+                        <h3>Room Utilization</h3>
+                        <p>Efficiency, hours held, and status.</p>
+                        <span class="format">CSV</span>
+                    </div>
+                    <div class="report-card" onclick="downloadReport('timetable', 'csv')">
+                        <i class='bx bxs-calendar'></i>
+                        <h3>Timetable Export</h3>
+                        <p>Course, Lecturer, and Venue mapping.</p>
+                        <span class="format">CSV</span>
+                    </div>
+                    <div class="report-card" onclick="downloadReport('alerts', 'csv')">
+                        <i class='bx bxs-error-alt'></i>
+                        <h3>Emergency/Alerts</h3>
+                        <p>Overcrowding events and spikes.</p>
+                        <span class="format">CSV</span>
+                    </div>
+                    <div class="report-card featured" onclick="downloadReport('snapshot', 'pdf')">
+                        <i class='bx bxs-briefcase-alt-2'></i>
+                        <h3>Executive Briefing</h3>
+                        <p>Full campus summary with charts.</p>
+                        <span class="format">PDF Only</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p>Generated reports are compliant with Vantage Audit v2.4</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SYSTEM OVERVIEW STRIP -->
+        <section class="overview-strip">
+            <div class="metric-panel">
+                <span class="label">Total Buildings</span>
+                <span class="value" id="stat-buildings">--</span>
+            </div>
+            <div class="metric-panel">
+                <span class="label">Total Rooms</span>
+                <span class="value" id="stat-rooms">--</span>
+            </div>
+            <div class="metric-panel">
+                <span class="label">Active Classes</span>
+                <span class="value accent" id="stat-active">--</span>
+            </div>
+            <div class="metric-panel">
+                <span class="label">Available Classes</span>
+                <span class="value success" id="stat-available">--</span>
+            </div>
+            <div class="metric-panel">
+                <span class="label">Avg. Occupancy</span>
+                <span class="value" id="stat-avg-occupancy">--%</span>
+            </div>
+        </section>
+
+        <div class="analytics-grid">
+            <!-- OCCUPANCY TREND SECTION -->
+            <div class="grid-section large occupancy-trends">
+                <div class="section-header">
+                    <h2>Campus Occupancy Trends</h2>
+                    <div class="chart-legend" id="trendsLegend"></div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="occupancyTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- BUILDING USAGE RANKINGS -->
+            <div class="grid-section building-rankings">
+                <div class="section-header">
+                    <h2>Building Activity Rankings</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="buildingRankChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ACTIVITY TIMELINE PANEL -->
+            <div class="grid-section timeline-panel">
+                <div class="section-header">
+                    <h2>Activity Timeline</h2>
+                </div>
+                <div class="timeline-feed" id="activityTimeline">
+                    <!-- Items added via JS -->
+                </div>
+            </div>
+
+            <!-- PEAK CAMPUS HOURS PANEL -->
+            <div class="grid-section peak-hours">
+                <div class="section-header">
+                    <h2>Peak Campus Activity</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="peakHoursChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ROOM UTILIZATION TABLE -->
+            <div class="grid-section full-width utilization-table">
+                <div class="section-header">
+                    <h2>Room Utilization</h2>
+                    <div class="table-actions">
+                        <input type="text" id="tableSearch" placeholder="Search rooms...">
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="roomsTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Room <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(1)">Building <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(2)">Status <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(3)">Total Usage Today <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(4)">Free Hours <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(5)">Current Class <i class='bx bx-sort'></i></th>
+                                <th onclick="sortTable(6)">Capacity Usage <i class='bx bx-sort'></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="roomsBody">
+                            <!-- Rows added via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOGOUT CONFIRMATION -->
+<div id="logout-overlay" class="logout-overlay hidden">
+  <div class="logout-modal">
+    <div class="logout-icon"><i class='bx bx-log-out-circle'></i></div>
+    <h2>Log Out?</h2>
+    <p>Are you sure you want to leave the analytics center?</p>
+    <div class="logout-actions">
+      <button id="cancel-logout" class="cancel-btn">Cancel</button>
+      <button id="confirm-logout" class="confirm-btn">Log Out</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/analytics.js"></script>
+</body>
+</html>

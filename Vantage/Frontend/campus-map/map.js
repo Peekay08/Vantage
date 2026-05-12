@@ -184,15 +184,28 @@ function buildingClick(e){
              const statusClass = room.status === "FREE" ? "free" : "in-use";
              classList.innerHTML += `
              <li class="class-item">
-                 <span class="class-room">Room ${room.id}</span>
-                 <span class="class-code ${statusClass}">${room.status}</span>
-                 <span class="class-time">${room.course || "No Class"}</span>
+                 <span class="class-info">Room ${room.id}</span>
+                 <span class="class-status ${statusClass}">${room.status}</span>
              </li>
              `;
          });
      } else {
          classList.innerHTML = "<li class='class-item'>No rooms registered</li>";
      }
+  }
+
+  // 🔍 SEARCH FUNCTIONALITY
+  const searchInput = document.getElementById("class-search");
+  if (searchInput) {
+     searchInput.value = "";
+     searchInput.oninput = function(){
+     const query = this.value.toLowerCase();
+     const items = classList.querySelectorAll("li");
+     items.forEach(item=>{
+     const text = item.innerText.toLowerCase();
+     item.style.display = text.includes(query) ? "flex" : "none";
+     });
+     };
   }
 
  // ENTRIES
@@ -203,8 +216,10 @@ function buildingClick(e){
         data.recentEntries.forEach(entry=>{
              entryList.innerHTML += `
              <li class="entry-item">
-                 <span class="person-name">${entry.student}</span>
-                 <span class="person-id">${entry.studentId}</span>
+                 <div class="person-group">
+                     <span class="person-name">${entry.student}</span>
+                     <span class="person-id">${entry.studentId}</span>
+                 </div>
                  <span class="time">${new Date(entry.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
              </li>
              `;
@@ -222,8 +237,10 @@ function buildingClick(e){
          data.recentExits.forEach(exit => {
              exitList.innerHTML += `
              <li class="exit-item">
-                 <span class="person-name">${exit.student}</span>
-                 <span class="person-id">${exit.studentId}</span>
+                 <div class="person-group">
+                     <span class="person-name">${exit.student}</span>
+                     <span class="person-id">${exit.studentId}</span>
+                 </div>
                  <span class="time">${new Date(exit.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
              </li>
              `;

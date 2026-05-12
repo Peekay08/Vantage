@@ -197,9 +197,8 @@ function buildingClick(e){
              const statusClass = room.status === "FREE" ? "free" : "in-use";
              classList.innerHTML += `
              <li class="class-item">
-                 <span class="class-room">Room ${room.id}</span>
-                 <span class="class-code ${statusClass}">${room.status}</span>
-                 <span class="class-time">${room.course || "No Class"}</span>
+                 <span class="class-info">Room ${room.id}</span>
+                 <span class="class-status ${statusClass}">${room.status}</span>
              </li>
              `;
          });

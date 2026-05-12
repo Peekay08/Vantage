@@ -91,8 +91,9 @@ function renderTimetable() {
             if (classesInSlot.length > 0) {
                 let cellHtml = `<div class="grid-cell">`;
                 classesInSlot.forEach(cls => {
+                    const coursePrefix = cls.course.split(" ")[0].toLowerCase();
                     cellHtml += `
-                    <div class="class-block" style="margin-bottom: 5px;">
+                    <div class="class-block ${coursePrefix}" style="margin-bottom: 5px;">
                         <strong>${cls.course}</strong><br>
                         <small>${cls.venue}</small>
                     </div>`;

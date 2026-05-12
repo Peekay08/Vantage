@@ -4,6 +4,7 @@
 #include "dashboard/dashboard.h"
 #include "timetable/timetable.h"
 #include "simulation/simulator.h"
+#include "analytics/analytics.h"
 #include "httplib.h"
 #include "../json.hpp"
 #include <iostream>
@@ -99,6 +100,76 @@ void startServer() {
     app.Get("/api/timetable/admin", [](const httplib::Request&, httplib::Response& res) {
         std::string result = getAdminTimetable();
         res.set_content(result, "application/json");
+    });
+
+    // ---------------- ANALYTICS ----------------
+    app.Get("/api/analytics/overview", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getAnalyticsOverview(), "application/json");
+    });
+
+    app.Get("/api/analytics/occupancy-trends", [](const httplib::Request& req, httplib::Response& res) {
+        std::string building = req.get_param_value("building");
+        if (building.empty()) building = "all";
+        res.set_content(getOccupancyTrends(building, "today"), "application/json");
+    });
+
+    app.Get("/api/analytics/building-rankings", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getBuildingRankings(), "application/json");
+    });
+
+    app.Get("/api/analytics/room-utilization", [](const httplib::Request& req, httplib::Response& res) {
+        std::string building = req.get_param_value("building");
+        std::string dept = req.get_param_value("dept");
+        if (building.empty()) building = "all";
+        if (dept.empty()) dept = "all";
+        res.set_content(getRoomUtilization(building, dept), "application/json");
+    });
+
+    app.Get("/api/analytics/activity-feed", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getActivityFeed(), "application/json");
+    });
+
+    app.Get("/api/analytics/peak-hours", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getPeakHours(), "application/json");
+    });
+
+    app.Get("/api/analytics/departments", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getDepartments(), "application/json");
+    });
+
+    app.Get("/api/analytics/buildings", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getBuildingsList(), "application/json");
+    });
+
+    // ---------------- REPORTS ----------------
+    app.Get("/api/reports/occupancy", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getOccupancyReport(), "application/json");
+    });
+
+    app.Get("/api/reports/usage", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getUsageReport(), "application/json");
+    });
+
+    app.Get("/api/reports/room-utilization", [](const httplib::Request& req, httplib::Response& res) {
+        std::string b = req.get_param_value("building");
+        std::string d = req.get_param_value("dept");
+        if (b.empty()) b = "all";
+        if (d.empty()) d = "all";
+        res.set_content(getRoomUtilizationReport(b, d), "application/json");
+    });
+
+    app.Get("/api/reports/timetable", [](const httplib::Request& req, httplib::Response& res) {
+        std::string b = req.get_param_value("building");
+        std::string d = req.get_param_value("dept");
+        std::string day = req.get_param_value("day");
+        if (b.empty()) b = "all";
+        if (d.empty()) d = "all";
+        if (day.empty()) day = "all";
+        res.set_content(getTimetableReport(b, d, day), "application/json");
+    });
+
+    app.Get("/api/reports/alerts", [](const httplib::Request&, httplib::Response& res) {
+        res.set_content(getAlertReport(), "application/json");
     });
 
     app.listen("0.0.0.0", 8080);
